@@ -1,4 +1,5 @@
 import React from 'react';
+import { Logo } from './_components/logo';
 
 const AuthLayout = ({
 	children
@@ -6,7 +7,10 @@ const AuthLayout = ({
 	children: React.ReactNode;
 }): React.ReactNode => {
 	return (
-		<div className='h-full flex items-center justify-center'>{children}</div>
+		<div className='h-full flex flex-col items-center justify-center space-y-6'>
+			<Logo />
+			{children}
+		</div>
 	);
 };
 
