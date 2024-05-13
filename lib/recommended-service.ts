@@ -31,6 +31,15 @@ export const getRecommended = async (): Promise<User[]> => {
 								}
 							}
 						}
+					},
+					{
+						NOT: {
+							blocking: {
+								some: {
+									blockedId: userId
+								}
+							}
+						}
 					}
 				]
 			},
