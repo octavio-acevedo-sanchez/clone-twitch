@@ -26,7 +26,7 @@ export const Recommended = ({ data }: RecommendedProps): React.ReactNode => {
 						key={user.id}
 						username={user.username}
 						imageUrl={user.imageUrl}
-						isLive={true}
+						isLive={false}
 					/>
 				))}
 			</ul>
