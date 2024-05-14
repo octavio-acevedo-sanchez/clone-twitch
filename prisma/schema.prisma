@@ -38,12 +38,12 @@ model Stream {
   name         String  @db.String
   thumbnailUrl String? @db.String
 
-  ingressId String? @unique
+  ingressId String? //@unique
   serverUrl String? @db.String
   streamKey String? @db.String
 
   isLive              Boolean @default(false)
-  isChatEnable        Boolean @default(true)
+  isChatEnabled       Boolean @default(true)
   isChatDelayed       Boolean @default(false)
   isChatFollowersOnly Boolean @default(false)
 
