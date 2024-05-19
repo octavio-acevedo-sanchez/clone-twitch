@@ -19,7 +19,11 @@ export const getFollowedUsers = async (): Promise<FollowWithFollowing[]> => {
 				}
 			},
 			include: {
-				following: true
+				following: {
+					include: {
+						stream: true
+					}
+				}
 			}
 		});
 

@@ -29,6 +29,7 @@ export const Following = ({ data }: FollowingProps): React.ReactNode => {
 						key={follow.followerId}
 						username={follow.following.username}
 						imageUrl={follow.following.imageUrl}
+						isLive={follow.following.stream?.isLive}
 					/>
 				))}
 			</ul>

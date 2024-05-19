@@ -1,8 +1,10 @@
 import { db } from '@/lib/db';
-import type { User } from '@prisma/client';
+import type { Stream, User } from '@prisma/client';
 import { getSelf } from '@/lib/auth-service';
 
-export const getRecommended = async (): Promise<User[]> => {
+export const getRecommended = async (): Promise<
+	Array<User | (User & { stream: Stream | null })>
+> => {
 	let userId;
 
 	try {
@@ -43,12 +45,18 @@ export const getRecommended = async (): Promise<User[]> => {
 					}
 				]
 			},
+			include: {
+				stream: true
+			},
 			orderBy: {
 				createdAt: 'desc'
 			}
 		});
 	} else {
 		users = await db.user.findMany({
+			include: {
+				stream: true
+			},
 			orderBy: {
 				createdAt: 'desc'
 			}
