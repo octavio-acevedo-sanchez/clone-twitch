@@ -2,10 +2,13 @@ import { getSelf } from './auth-service';
 import { db } from '@/lib/db';
 import type {
 	FollowWithFollowing,
-	FollowWithFollowingAndFollower
+	FollowWithFollowingAndFollower,
+	FollowWithFollowingStream
 } from '@/types';
 
-export const getFollowedUsers = async (): Promise<FollowWithFollowing[]> => {
+export const getFollowedUsers = async (): Promise<
+	FollowWithFollowingStream[]
+> => {
 	try {
 		const self = await getSelf();
 
@@ -21,7 +24,11 @@ export const getFollowedUsers = async (): Promise<FollowWithFollowing[]> => {
 			include: {
 				following: {
 					include: {
-						stream: true
+						stream: {
+							select: {
+								isLive: true
+							}
+						}
 					}
 				}
 			}

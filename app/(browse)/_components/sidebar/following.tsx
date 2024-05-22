@@ -1,12 +1,12 @@
 'use client';
 
 import { useSidebar } from '@/store/use-sidebar';
-import type { FollowWithFollowing } from '@/types';
+import type { FollowWithFollowingStream } from '@/types';
 import React from 'react';
 import { UserItem, UserItemSkeleton } from './user-item';
 
 interface FollowingProps {
-	data: FollowWithFollowing[];
+	data: FollowWithFollowingStream[];
 }
 
 export const Following = ({ data }: FollowingProps): React.ReactNode => {

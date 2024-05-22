@@ -40,7 +40,5 @@ export async function POST(req: Request): Promise<Response> {
 		});
 	}
 
-	// console.log(event);
-
 	return Response.json({ ok: true });
 }

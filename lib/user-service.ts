@@ -1,12 +1,30 @@
 import { db } from '@/lib/db';
-import type { User } from '@prisma/client';
+import type { Stream, User } from '@prisma/client';
 
 export const getUserByUsername = async (
 	username: string
-): Promise<User | null> => {
+): Promise<(User & { stream: Stream | null }) | null> => {
 	const user = await db.user.findUnique({
 		where: {
 			username
+		},
+		include: {
+			stream: true
+		}
+	});
+
+	return user;
+};
+
+export const getUserById = async (
+	id: string
+): Promise<(User & { stream: Stream | null }) | null> => {
+	const user = await db.user.findUnique({
+		where: {
+			id
+		},
+		include: {
+			stream: true
 		}
 	});
 

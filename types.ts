@@ -1,4 +1,4 @@
-import type { Block, Follow, Stream, User } from '@prisma/client';
+import type { Block, Follow, User } from '@prisma/client';
 
 export type FollowWithFollowingAndFollower = Follow & {
 	following: User;
@@ -6,8 +6,12 @@ export type FollowWithFollowingAndFollower = Follow & {
 };
 
 export type FollowWithFollowing = Follow & {
+	following: User;
+};
+
+export type FollowWithFollowingStream = Follow & {
 	following: User & {
-		stream: Stream | null;
+		stream: { isLive: boolean } | null;
 	};
 };
 

@@ -1,9 +1,9 @@
 import { db } from '@/lib/db';
-import type { Stream, User } from '@prisma/client';
+import type { User } from '@prisma/client';
 import { getSelf } from '@/lib/auth-service';
 
 export const getRecommended = async (): Promise<
-	Array<User | (User & { stream: Stream | null })>
+	Array<User | (User & { isLive: boolean | null })>
 > => {
 	let userId;
 
@@ -46,7 +46,11 @@ export const getRecommended = async (): Promise<
 				]
 			},
 			include: {
-				stream: true
+				stream: {
+					select: {
+						isLive: true
+					}
+				}
 			},
 			orderBy: {
 				createdAt: 'desc'
@@ -55,7 +59,11 @@ export const getRecommended = async (): Promise<
 	} else {
 		users = await db.user.findMany({
 			include: {
-				stream: true
+				stream: {
+					select: {
+						isLive: true
+					}
+				}
 			},
 			orderBy: {
 				createdAt: 'desc'
