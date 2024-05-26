@@ -3,7 +3,9 @@ import type { Stream, User } from '@prisma/client';
 
 export const getUserByUsername = async (
 	username: string
-): Promise<(User & { stream: Stream | null }) | null> => {
+): Promise<
+	(User & { stream: Stream | null; _count: { followedBy: number } }) | null
+> => {
 	const user = await db.user.findUnique({
 		where: {
 			username
