@@ -10,6 +10,7 @@ import React from 'react';
 import { OfflineVideo } from './offline-video';
 import { LoadingVideo } from './loading';
 import { LiveVideo } from './live-video';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface VideoProps {
 	hostName: string;
@@ -38,4 +39,12 @@ export const Video = ({
 	}
 
 	return <div className='aspect-video border-b group relative'>{content}</div>;
+};
+
+export const VideoSkeleton = (): React.ReactNode => {
+	return (
+		<div className='aspect-vide border-x border-background'>
+			<Skeleton className='h-full w-full rounded-none' />
+		</div>
+	);
 };
