@@ -1,17 +1,31 @@
+import type { CustomUser } from '@/components/stream-player';
 import { db } from '@/lib/db';
 import type { Stream, User } from '@prisma/client';
 
 export const getUserByUsername = async (
 	username: string
-): Promise<
-	(User & { stream: Stream | null; _count: { followedBy: number } }) | null
-> => {
+): Promise<CustomUser | null> => {
 	const user = await db.user.findUnique({
 		where: {
 			username
 		},
-		include: {
-			stream: true,
+		select: {
+			id: true,
+			externalUserId: true,
+			username: true,
+			bio: true,
+			imageUrl: true,
+			stream: {
+				select: {
+					id: true,
+					isLive: true,
+					isChatDelayed: true,
+					isChatEnabled: true,
+					isChatFollowersOnly: true,
+					thumbnailUrl: true,
+					name: true
+				}
+			},
 			_count: {
 				select: {
 					followedBy: true

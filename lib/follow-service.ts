@@ -40,7 +40,9 @@ export const getFollowedUsers = async (): Promise<
 	}
 };
 
-export const isFollowingUser = async (id: string): Promise<boolean> => {
+export const isFollowingUser: (id: string) => Promise<boolean> = async (
+	id: string
+): Promise<boolean> => {
 	try {
 		const self = await getSelf();
 

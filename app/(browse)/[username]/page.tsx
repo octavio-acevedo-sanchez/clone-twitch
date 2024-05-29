@@ -12,8 +12,9 @@ interface UserPageProps {
 
 const UserPage = async ({ params }: UserPageProps): Promise<JSX.Element> => {
 	const user = await getUserByUsername(params.username);
+	const stream = user && 'stream' in user ? user.stream : null;
 
-	if (!user || !user.stream) {
+	if (!user || !stream) {
 		notFound();
 	}
 
