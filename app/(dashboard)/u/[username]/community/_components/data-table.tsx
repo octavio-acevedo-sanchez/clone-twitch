@@ -4,9 +4,9 @@ import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
-	ColumnDef,
-	ColumnFiltersState,
-	SortingState,
+	type ColumnDef,
+	type ColumnFiltersState,
+	type SortingState,
 	flexRender,
 	getCoreRowModel,
 	getFilteredRowModel,
@@ -25,14 +25,14 @@ import {
 } from '@/components/ui/table';
 
 interface DataTableProps<TData, TValue> {
-	columns: ColumnDef<TData, TValue>[];
+	columns: Array<ColumnDef<TData, TValue>>;
 	data: TData[];
 }
 
 export function DataTable<TData, TValue>({
 	columns,
 	data
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData, TValue>): React.ReactNode {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
 		[]

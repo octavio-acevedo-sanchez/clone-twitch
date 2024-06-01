@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js 14 - Twitch Clone
 
-## Getting Started
+Twitch Clone application, uses TypeScript (StandardJS), Tailwind + Shadcn/UI, MongoDB, the application only has basic functionalities. This project is a test one.
 
-First, run the development server:
+- Authentication using clerk/nextjs v4.30.
+- Create channel for live video streaming along with live chat.
+- Option to follow and unfollow a channel.
+- Option to block a user.
+- Search for channels and users.
+- Integration with uploadthing.com to upload and view images files.
+- Integration with LiveKit.io to generate stream video and chat.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Configure environment variables
+
+Rename the file **.env.template** to **.env.local**
+
+- Clerk: Create an account on https://clerk.com, create an application and then go to Api Keys and copy the values of NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY and CLERK_SECRET_KEY
+
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+CLERK_WEBHOOK_SECRET=
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- MongoDB URL:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+DATABASE_URL="mongodb+srv://user:password@domain.com/name_bd"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- UploadThing: Go to uploadthing.com, create an account, after logging in, create an app, in API Keys copy UPLOADTHING_SECRET and UPLOADTHING_APP_ID
 
-## Learn More
+```
+UPLOADTHING_SECRET=
+UPLOADTHING_APP_ID=
+```
 
-To learn more about Next.js, take a look at the following resources:
+- LiveKit: Go to liveKit.io and sign up. After logging in, create a project. Then you must go to the left menu and click in Settings, in KEYS must create a Key and then copy the variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+LIVEKIT_API_URL=
+LIVEKIT_API_KEY=
+LIVEKIT_API_SECRET=
+NEXT_PUBLIC_LIVEKIT_WS_URL=
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Rebuild the node modules and build Next
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+npm install
+npm run dev
+```
