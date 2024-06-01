@@ -1,10 +1,18 @@
 import { db } from '@/lib/db';
 import { getSelf } from '@/lib/auth-service';
-import type { Stream, User } from '@prisma/client';
+import type { User } from '@prisma/client';
+
+interface StreamInfo {
+	id: string;
+	name: string;
+	isLive: boolean;
+	thumbnailUrl: string | null;
+	updatedAt: Date;
+}
 
 export const getSearch = async (
 	term?: string
-): Promise<Array<Stream & { user: User }>> => {
+): Promise<Array<StreamInfo & { user: User }>> => {
 	let userId;
 
 	try {
@@ -43,8 +51,13 @@ export const getSearch = async (
 					}
 				]
 			},
-			include: {
-				user: true
+			select: {
+				user: true,
+				id: true,
+				name: true,
+				isLive: true,
+				thumbnailUrl: true,
+				updatedAt: true
 			},
 			orderBy: [
 				{
@@ -73,8 +86,13 @@ export const getSearch = async (
 					}
 				]
 			},
-			include: {
-				user: true
+			select: {
+				user: true,
+				id: true,
+				name: true,
+				isLive: true,
+				thumbnailUrl: true,
+				updatedAt: true
 			},
 			orderBy: [
 				{

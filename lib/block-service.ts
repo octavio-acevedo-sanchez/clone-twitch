@@ -125,3 +125,18 @@ export const unblockUser = async (
 		return false;
 	}
 };
+
+export const getBlockedUsers = async (): Promise<BlockWithBlocked[]> => {
+	const self = await getSelf();
+
+	const blockedUsers = await db.block.findMany({
+		where: {
+			blockerId: self.id
+		},
+		include: {
+			blocked: true
+		}
+	});
+
+	return blockedUsers;
+};
